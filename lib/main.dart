@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:image_editor_pro/controllers/home_controller.dart';
+import 'package:image_editor_pro/views/controllers/home_controller.dart';
 import 'package:image_editor_pro/views/home_screen.dart';
 import 'package:image_editor_pro/utils/app_colors.dart';
 
