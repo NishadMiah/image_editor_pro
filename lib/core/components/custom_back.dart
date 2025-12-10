@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
-import 'package:image_editor_pro/core/utils/app_colors.dart';
+import 'package:image_editor_pro/utils/app_colors.dart';
 import 'package:image_editor_pro/core/utils/app_sizes.dart';
 import 'package:image_editor_pro/core/utils/icon_path.dart';
 import 'package:image_editor_pro/core/components/custom_image.dart';
@@ -36,7 +36,7 @@ class CustomBackButton extends StatelessWidget implements PreferredSizeWidget {
                         width: 32.w,
                         height: 32.h,
                         decoration: BoxDecoration(
-                          color: AppColors.containerColor,
+                          color: AppColors.white.withOpacity(0.1),
                           borderRadius: .circular(50.r),
                         ),
                         child: IconButton(
@@ -44,7 +44,7 @@ class CustomBackButton extends StatelessWidget implements PreferredSizeWidget {
                           icon: CustomImage(
                             imageSrc: IconPath.arrowBack,
                             width: 24.w,
-                            imageColor: color ?? AppColors.black,
+                            imageColor: color ?? Colors.white,
                             height: 24.h,
                           ),
                         ),
@@ -56,7 +56,7 @@ class CustomBackButton extends StatelessWidget implements PreferredSizeWidget {
                   fontSize: 20.w,
                   fontWeight: .w600,
                   textAlign: .center,
-                  color: color ?? AppColors.black7,
+                  color: color ?? Colors.white,
                   right: 8.w,
                 ),
                 const SizedBox.shrink(),

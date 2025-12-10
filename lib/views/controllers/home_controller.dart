@@ -22,32 +22,12 @@ class HomeController extends GetxController {
     initializeBackgroundRemover();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
   Future<void> initializeBackgroundRemover() async {
     try {
-      // local_rembg doesn't need initialization
       await Future.delayed(const Duration(milliseconds: 500));
-
       isInitialized.value = true;
-      print("Background remover ready!");
-
-      Get.snackbar(
-        '✨ Ready to Remove Backgrounds!',
-        'AI model loaded successfully',
-        snackPosition: SnackPosition.TOP,
-        backgroundColor: Colors.green.withOpacity(0.9),
-        colorText: Colors.white,
-        duration: const Duration(seconds: 2),
-        margin: const EdgeInsets.all(16),
-        borderRadius: 12,
-      );
     } catch (e) {
-      print("Initialization info: $e");
-      isInitialized.value = true; // Still allow usage
+      isInitialized.value = true;
     }
   }
 
@@ -88,19 +68,13 @@ class HomeController extends GetxController {
 
     isLoading.value = true;
     try {
-      print("Starting background removal with local_rembg...");
-
-      // Use local_rembg to remove background
       LocalRembgResultModel result = await LocalRembg.removeBackground(
         imagePath: file.path,
-        cropTheImage: false, // Keep original dimensions
+        cropTheImage: false,
       );
-
-      print("Result status: ${result.status}");
 
       if (result.status == 1 && result.imageBytes != null) {
         processedImage.value = Uint8List.fromList(result.imageBytes!);
-        print("Background removed successfully!");
 
         Get.snackbar(
           '✅ Success!',
@@ -113,13 +87,9 @@ class HomeController extends GetxController {
           borderRadius: 12,
         );
       } else {
-        throw Exception(
-          result.errorMessage ??
-              'Failed to process image - status: ${result.status}',
-        );
+        throw Exception(result.errorMessage ?? 'Failed to process image');
       }
     } catch (e) {
-      print("Failed to remove background: $e");
       Get.snackbar(
         'Error',
         'Failed to remove background: ${e.toString()}',
@@ -136,16 +106,13 @@ class HomeController extends GetxController {
   Future<void> saveImage() async {
     if (processedImage.value == null) return;
     try {
-      // Save to Downloads folder
       Directory directory;
       if (Platform.isAndroid) {
-        // For Android, save to Downloads folder
         directory = Directory('/storage/emulated/0/Download');
         if (!await directory.exists()) {
           directory = Directory('/storage/emulated/0/Downloads');
         }
       } else {
-        // For iOS, use app documents
         directory = await getApplicationDocumentsDirectory();
       }
 

@@ -11,6 +11,10 @@ class AppColors {
   static const Color success = Color(0xFF00E676);
 
   // Legacy support
+  static const Color textPrimary =
+      Colors.white; // Default text color for dark theme
+  static const Color white = Colors.white;
+  static const Color grey = Colors.grey;
   static const Color textSecondary = Colors.grey;
   static const Color fillColor = Color(0xFF2A2D3E);
   static const Color containerBorder = Colors.grey;
